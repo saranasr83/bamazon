@@ -17,7 +17,7 @@ Run command 'npm install' in Terminal or GitBash
 - will show the customer the total cost of their purchase.
 
 ## demo1
-![demo](demo.gif)
+![demo](demo1.gif)
 
 ## Second Part
 
@@ -37,7 +37,7 @@ Run command 'npm install' in Terminal or GitBash
     If a manager selects Add New Product, it should allow the manager to add a completely new product to the store.
 
 ## demo2
-![demo](demo.gif)
+![demo](demo2.gif)
 
 ## Built With
 
