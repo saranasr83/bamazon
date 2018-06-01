@@ -17,6 +17,6 @@ VALUES ("Iphone","electronic", 450, 50),("TV","electronic", 750, 40),
 ("Tent","outdoor", 50, 150), ("Bike","sport", 150, 80), 
 ("Grill","outdoor", 350, 20),("Shoes","shoe", 150, 250),
 ("Sunglasses","accesories", 100, 60), ("Lip stick","makeup", 20, 350), 
-("Alexa","electronic", 150, 10), ("Watch","accesories", 250, 70);
+("Alexa","electronic", 150, 9), ("Watch","accesories", 250, 70);
 
 SELECT * FROM products;

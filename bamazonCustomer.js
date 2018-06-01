@@ -13,12 +13,12 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
-    print()
+    tableOfProducts()
 })
 
 var totalPurchase = 0;
 
-function print() {
+function tableOfProducts() {
     connection.query("select * from products", function (err, res) {
 
         // instantiate
@@ -31,7 +31,6 @@ function print() {
         for (var i = 0; i < res.length; i++) {
             table.push(
                 [res[i].Item_id, res[i].Product_name, res[i].Department_name, res[i].Price, res[i].Stock_quantity]
-
             );
         }
 
@@ -74,6 +73,7 @@ function userMenu(res) {
 
                 console.log("Great! you successfully added " + answer.productquantity + " " + res[answer.productId - 1].Product_name + " to your basket")
                 totalPurchase += (res[answer.productId - 1].Price * answer.productquantity)
+                
                 connection.query("UPDATE products SET ? WHERE?",
                     [
                         {
@@ -88,7 +88,7 @@ function userMenu(res) {
 
                 anotherPurchase()
             } else {
-                console.log("We're sorry. Insufficient quantity!")
+                console.log("we're sorry. Insufficient quantity!")
                 anotherPurchase()
             }
 
@@ -106,7 +106,7 @@ function anotherPurchase() {
         }
     ]).then(function (answer) {
         if (answer.userChoice === "Yes") {
-            userMenu();
+            tableOfProducts();
         } else {
             console.log("Thank you for shopping at Bamazon! Your total purchase is: $", totalPurchase);
             connection.end();
