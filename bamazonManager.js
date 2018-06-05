@@ -123,26 +123,30 @@ function addToInventory(res) {
             }
         }
     ]).then(function (answer) {
-        connection.query("UPDATE products SET ? WHERE ?",
-            [
-                {
-                    Stock_quantity: res[answer.addToItemId - 1].Stock_quantity + (answer.quantityOfItem)
-                },
-                {
-                    Item_id: answer.addToItemId
-                }
-            ],
-            function (err) {
-                if (err) {
-                    throw err;
-                } else {
+        connection.query("SELECT * FROM products where ?",{Item_id: answer.addToItemId},function(err, res){
+           
+             connection.query("UPDATE products SET ? WHERE ?",
+                [
+                    {
+                        Stock_quantity: parseInt(res[0].Stock_quantity) + parseInt(answer.quantityOfItem)
+                    },
+                    {
+                        Item_id: answer.addToItemId
+                    }
+                ],
+                function (err) {
+                    if (err) {
+                        console.log("err", err);
+                        throw err;
+                    } else {
+                        console.log(res[0].Product_name + " products updated!\n");
+                        managerMenu();
+                    }
 
-                    console.log(res.affectedRows + " products updated!\n");
-                    managerMenu();
                 }
-
-            }
-        )
+            )
+        })
+       
     })
 }
 
